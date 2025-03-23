@@ -4,10 +4,12 @@ import Link from "next/link"
 import { getDictionary } from "@/i18n/get-dictionary"
 import type { Locale } from "@/i18n/config"
 
+type PromisedParams = Promise<{ lang: Locale }>
+
 export default async function SignInPage({
   params: { lang }
 }: {
-  params: { lang: Locale }
+  params: PromisedParams
 }) {
   const dict = await getDictionary(lang)
 

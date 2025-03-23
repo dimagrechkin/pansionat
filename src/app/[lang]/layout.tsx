@@ -7,6 +7,7 @@ import { locales } from '@/i18n/config'
 import type { Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { Toaster } from "react-hot-toast"
+import { Analytics } from "@vercel/analytics/react"
 import { BreadcrumbWrapper } from "@/components/breadcrumb-wrapper"
 import { PhoneNumberLine } from "@/components/PhoneNumberLine";
 
@@ -15,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
-  const url = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com'
+  const url = process.env.NEXT_PUBLIC_APP_URL || 'http://pansionat-sion.com.ua'
 
   return {
     title: {
@@ -78,6 +79,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={inter.className}>
+        <Analytics/>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

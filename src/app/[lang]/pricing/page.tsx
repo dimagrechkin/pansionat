@@ -5,10 +5,12 @@ import { getDictionary } from '@/i18n/get-dictionary'
 import type { Locale } from '@/i18n/config'
 import type { Metadata } from 'next'
 
+type PromisedParams = Promise<{ lang: Locale }>
+
 export default async function PricingPage({
   params
 }: {
-  params: { lang: Locale }
+  params: PromisedParams
 }) {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -83,11 +85,11 @@ export default async function PricingPage({
 export async function generateMetadata({
   params
 }: {
-  params: { lang: Locale }
+  params: PromisedParams
 }): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
-  const url = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com'
+  const url = process.env.NEXT_PUBLIC_APP_URL || 'http://pansionat-sion.com.ua'
 
   return {
     title: dict.pricing.title,

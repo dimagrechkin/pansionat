@@ -1,13 +1,13 @@
 User-agent: *
 Allow: /
 
-# 禁止访问 api 路由
+# Block access to API routes
 Disallow: /api/
 
-# 禁止访问认证相关页面
+# Block access to authentication related pages
 Disallow: /*/signin
 Disallow: /*/signup
 Disallow: /*/profile
 
-# sitemap 配置
-Sitemap: https://your-domain.com/sitemap.xml
+# Sitemap configuration
+Sitemap: https://pansionat-sion.com.ua/sitemap.xml

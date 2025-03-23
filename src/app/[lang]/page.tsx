@@ -13,9 +13,11 @@ import { AuthForm } from "@/components/auth/auth-form";
 import { CallAction } from "@/components/call-action";
 // import blue_logo from "..//../public/images/blue_logo.png";
 
-import MapClient from "@/components/MapClient";
+import MapClient from "@/components/mapClient";
 
-export default async function Home({ params }: { params: { lang: Locale } }) {
+type PromisedParams = Promise<{ lang: Locale }>
+
+export default async function Home({ params }: { params: PromisedParams }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 

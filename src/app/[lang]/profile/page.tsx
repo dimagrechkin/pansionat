@@ -10,10 +10,13 @@ import { supabase } from "@/lib/supabase"
 import { getDictionary } from "@/i18n/get-dictionary"
 import { Icons } from "@/components/icons"
 
+type PromisedParams = Promise<{ lang: Locale }>
+
+
 export default function ProfilePage({
   params: { lang }
 }: {
-  params: { lang: Locale }
+  params: PromisedParams
 }) {
   const [userData, setUserData] = useState<any>(null)
   const [loading, setLoading] = useState(true)

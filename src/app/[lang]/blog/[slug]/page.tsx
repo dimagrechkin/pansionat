@@ -18,7 +18,9 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { myRemarkPlugin } from "@/components/myRemarkPlugin"
 import { PlanCards } from "@/components/PlanCards"
 
-export default async function BlogPost({ params }: { params: { slug: string, lang: Locale } }) {
+type PromisedParams = Promise<{ slug: string; lang: "uk" | "ru" }>
+
+export default async function BlogPost({ params }: { params: PromisedParams }) {
   const { slug, lang } = await params
   const dict = await getDictionary(lang)
   const post = await getPost(slug, lang) as unknown as {
@@ -151,7 +153,7 @@ export async function generateStaticParams({
 export async function generateMetadata({
   params
 }: {
-  params: { slug: string, lang: Locale }
+  params: PromisedParams
 }): Promise<Metadata> {
   const { lang, slug} = await params
   const dict = await getDictionary(lang)
@@ -161,7 +163,7 @@ export async function generateMetadata({
     author: string
     date: string
   }
-  const url = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com'
+  const url = process.env.NEXT_PUBLIC_APP_URL || 'http://pansionat-sion.com.ua'
 
 
   return {
