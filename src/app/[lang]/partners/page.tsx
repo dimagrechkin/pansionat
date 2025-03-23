@@ -81,7 +81,7 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale }
 }): Promise<Metadata> {
-  const { lang } = params
+  const { lang } = await params
   const dict = await getDictionary(lang)
   const url = process.env.NEXT_PUBLIC_APP_URL || "https://your-domain.com"
 
