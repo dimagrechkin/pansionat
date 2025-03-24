@@ -88,7 +88,7 @@ export function AuthForm({ lang }: RegistrationFormProps) {
         <div className="grid gap-4">
           {/* Name */}
           <div className="grid gap-2">
-            <Label htmlFor="name">Им&apos;я</Label>
+            <Label htmlFor="name">Имя</Label>
             <Input
               id="name"
               type="text"
