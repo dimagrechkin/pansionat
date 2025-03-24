@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
     },
     description: dict.metadata.description,
     keywords: dict.metadata.keywords,
-    authors: [{ name: 'yeheboo' }],
+    authors: [{ name: 'sion' }],
     metadataBase: new URL(url),
     alternates: {
       canonical: `${url}/${lang}`,

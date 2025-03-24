@@ -61,7 +61,7 @@ export default async function Home({ params }: { params: PromisedParams }) {
         <p className="text-center text-gray-500 mb-6">
           {dict.home.contact.consultation.description}
         </p>
-        <AuthForm lang={lang} />
+        <AuthForm dict={dict} />
       </section>
 
       <RecentPosts lang={lang} />

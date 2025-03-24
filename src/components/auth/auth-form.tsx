@@ -4,32 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
-import { useState, useEffect } from "react";
-import { getDictionary } from "@/i18n/get-dictionary";
-import type { Locale } from "@/i18n/config";
+import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import toast from "react-hot-toast";
 import PhoneInput from "../PhoneInput";
 
 interface RegistrationFormProps {
-  lang: Locale;
+  dict: any;
 }
 
-export function AuthForm({ lang }: RegistrationFormProps) {
+export function AuthForm({ dict }: RegistrationFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [dict, setDict] = useState<any>(null);
+  // const [dict, setDict] = useState<any>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+380");
   // const [phoneNumber, setPhoneNumber] = useState("+380");
   const [comment, setComment] = useState("");
   const [phoneError, setError] = useState("");
 
-  // Load your i18n dictionary
-  useEffect(() => {
-    getDictionary(lang).then(setDict);
-  }, [lang]);
-
-  if (!dict) return null;
+  
 
 
   // A simple regex that checks:
@@ -88,7 +81,7 @@ export function AuthForm({ lang }: RegistrationFormProps) {
         <div className="grid gap-4">
           {/* Name */}
           <div className="grid gap-2">
-            <Label htmlFor="name">Имя</Label>
+            <Label htmlFor="name">{dict.authForm.label}</Label>
             <Input
               id="name"
               type="text"
@@ -101,7 +94,7 @@ export function AuthForm({ lang }: RegistrationFormProps) {
 
           {/* Phone */}
           <div className="grid gap-2">
-            <Label htmlFor="phone">Телефон</Label>
+            <Label htmlFor="phone">{dict.authForm.telephone}</Label>
             <PhoneInput
               id="phone"
               type="text"
@@ -116,7 +109,7 @@ export function AuthForm({ lang }: RegistrationFormProps) {
 
           {/* Comment */}
           <div className="grid gap-2">
-            <Label htmlFor="comment">Коментар</Label>
+            <Label htmlFor="comment">{dict.authForm.comment}</Label>
             <Input
               id="comment"
               type="text"
@@ -132,7 +125,7 @@ export function AuthForm({ lang }: RegistrationFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Відправити
+            {dict.authForm.send}
           </Button>
         </div>
       </form>

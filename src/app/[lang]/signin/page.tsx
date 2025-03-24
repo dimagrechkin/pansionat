@@ -1,4 +1,3 @@
-import { AuthForm } from "@/components/auth/auth-form"
 import { Icons } from "@/components/icons"
 import Link from "next/link"
 import { getDictionary } from "@/i18n/get-dictionary"
@@ -25,7 +24,7 @@ export default async function SignInPage({
             {dict.auth.signin.description}
           </p>
         </div>
-        <AuthForm mode="signin" lang={lang} />
+        {/* <AuthForm mode="signin" lang={lang} /> */}
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link 
             href={`/${lang}/signup`}

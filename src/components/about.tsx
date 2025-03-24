@@ -9,6 +9,70 @@ export default async function About({
 }) {
     const dict = await getDictionary(lang);
 
+    const cityLinks = {
+        'Киев': {
+            href: `/${lang}/blog/kyiv`,
+            text: dict.about.section.links.kiev
+        },
+        'Києві': {
+            href: `/${lang}/blog/kyiv`,
+            text: 'Києві'
+        },
+        'Житомирі': {
+            href: `/${lang}/blog/zhitomyr`,
+            text: dict.about.section.links.zhitomir
+        },
+        'Житомир': {
+             href: `/${lang}/blog/zhytomyr`,
+             text: dict.about.section.links.zhitomir
+         },
+        'Львов': {
+            href: `/${lang}/blog/lviv`,
+            text: dict.about.section.links.lviv
+        },
+        'Львові': {
+            href: `/${lang}/blog/lviv`,
+            text: dict.about.section.links.lviv
+        },
+        'Хмельницкий': {
+            href: `/${lang}/blog/khmelnytskyi`,
+            text: dict.about.section.links.khmelnitskiy
+        },
+        'Хмельницькому': {
+            href: `/${lang}/blog/khmelnytskyi`,
+            text: dict.about.section.links.khmelnitskiy
+        },
+        'Тернополь': {
+            href: `/${lang}/blog/ternopil`,
+            text: dict.about.section.links.ternopil
+        },
+        'Тернополі': {
+            href: `/${lang}/blog/ternopil`,
+            text: dict.about.section.links.ternopil
+        }
+    };
+
+    const renderParagraphWithLinks = (paragraph: string) => {
+        if (!paragraph.includes('Киев') && !paragraph.includes('Києві')) return paragraph;
+
+        const parts = paragraph.split(/(Киев|Житомир|Львов|Хмельницкий|Тернополь|Києві|Житомирі|Львові|Тернополі|Хмельницькому)/g);
+        return parts.map((part, index) => {
+            const cityLink = cityLinks[part as keyof typeof cityLinks];
+            if (cityLink) {
+                return (
+                    <Link
+                        key={index}
+                        href={cityLink.href}
+                        className="text-blue-400 hover:text-blue-600"
+                    >
+                        {cityLink.text}
+                    </Link>
+                );
+            }
+            return part;
+        });
+    };
+
     return (
         <section className="w-full py-12 md:py-24 lg:py-12">
             <div className="container px-4 md:px-6">
@@ -35,29 +99,7 @@ export default async function About({
                         <div className="prose prose-lg max-w-none text-gray-600">
                             {dict.about.section.description.map((paragraph: string, idx: number) => (
                                 <p key={idx}>
-                                    {paragraph.includes("Днепр") ? (
-                                        <>
-                                            {paragraph.split("Днепр")[0]}
-                                            <Link
-                                                href="#"
-                                                className="text-blue-400 hover:text-blue-600"
-                                            >
-                                                {dict.about.section.links.dnipro}
-                                            </Link>
-                                            {paragraph
-                                                .split("Днепр")[1]
-                                                .split("Запорожье")[0]}
-                                            <Link
-                                                href="#"
-                                                className="text-blue-400 hover:text-blue-600"
-                                            >
-                                                {dict.about.section.links.zaporizhzhia}
-                                            </Link>
-                                            {paragraph.split("Запорожье")[1]}
-                                        </>
-                                    ) : (
-                                        paragraph
-                                    )}
+                                    {renderParagraphWithLinks(paragraph)}
                                 </p>
                             ))}
                         </div>
