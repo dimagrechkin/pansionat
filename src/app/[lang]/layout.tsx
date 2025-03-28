@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast"
 import { Analytics } from "@vercel/analytics/react"
 import { BreadcrumbWrapper } from "@/components/breadcrumb-wrapper"
 import { PhoneNumberLine } from "@/components/PhoneNumberLine";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -80,6 +81,7 @@ export default async function RootLayout({
     <html lang={lang} suppressHydrationWarning>
       <body className={inter.className}>
         <Analytics/>
+        <SpeedInsights/>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
